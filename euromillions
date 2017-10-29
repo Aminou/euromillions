@@ -1,0 +1,27 @@
+#!/usr/bin/env php
+<?php
+require 'vendor/autoload.php';
+
+use App\DataAnalyzer;
+use App\CSVParser;
+
+$sources = [
+    //'data/euromillions.csv',
+    //'data/euromillions_2.csv',
+    //'data/euromillions_3.csv',
+    'data/euromillions_4.csv'
+];
+
+$analyser = new DataAnalyzer(new CSVParser, $sources);
+
+echo 'Les chiffres qui sortent le plus souvent:'. PHP_EOL;
+echo $analyser->printHighestNumbers() . PHP_EOL;
+
+echo 'Les Chiffres qui sortent le moins souvent:'.PHP_EOL;
+echo $analyser->printLowestNumbers() . PHP_EOL;
+
+echo 'Les Etoiles qui sortent le plus souvent:'.PHP_EOL;
+echo $analyser->printHighestStars() . PHP_EOL;
+
+echo 'Les Etoiles qui sortent le moins souvent:' . PHP_EOL;
+echo $analyser->printLowestStars() . PHP_EOL;
