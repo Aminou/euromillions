@@ -19,6 +19,7 @@ class DataTest extends TestCase
             'data/euromillions.csv',
             'data/euromillions_2.csv',
             'data/euromillions_3.csv',
+            'data/euromillions_4.csv'
         ];
     }
 
@@ -27,29 +28,18 @@ class DataTest extends TestCase
         return new DataFilter(new CSVParser, $this->getFiles());
     }
 
+
     private function getAnalyser()
     {
         return new DataAnalyzer(new CSVParser, $this->getFiles());
     }
 
     /** @test **/
-    public function it_tests_the_integrity_of_the_data()
+    public function it_tests_that_we_receive_data()
     {
         $data = $this->getParser()->getData();
         $this->assertInstanceOf(Collection::class, $data);
         $this->assertTrue($data->count() > 0);
-    }
-
-    /** @test **/
-    public function it_test_if_number_is_the_lowest()
-    {
-        $analyser = $this->getAnalyser();
-
-        $min = $analyser->getMinNumber();
-        $max = $analyser->getMaxNumber();
-
-
-        $this->assertTrue($min < $max);
     }
 
     /** @test **/
